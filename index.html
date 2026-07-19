@@ -11,10 +11,10 @@
   <link
     href="https://googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap"
     rel="stylesheet">
-   <!--Font awesome CDN link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--Font awesome CDN link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <style>
@@ -24,10 +24,10 @@
     box-sizing: border-box;
   }
 
- 
+
   html {
     scroll-behavior: smooth;
-  
+
   }
 
   :root {
@@ -47,20 +47,18 @@
     scroll-behavior: smooth;
   }
 
-  a{
+  a {
     text-decoration: none;
     color: var(--white);
   }
 
   body {
     min-height: 100vh;
-   
-       background:
-        linear-gradient(
-            rgba(252, 254, 255, 0),
-            rgba(188, 246, 13, 0)
-        ),
-        url("./image/BG.png");
+
+    background:
+      linear-gradient(rgba(252, 254, 255, 0),
+        rgba(188, 246, 13, 0)),
+      url("./image/BG.png");
 
     background-size: cover;
     background-position: center;
@@ -78,89 +76,89 @@
 
   }
 
-       /* =====================================================
+  /* =====================================================
            STARTUP LOADER
         ===================================================== */
 
-        #startupLoader {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #05070b;
-            transition: opacity .8s ease, visibility .8s ease;
-        }
+  #startupLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #05070b;
+    transition: opacity .8s ease, visibility .8s ease;
+  }
 
-        #startupLoader.hide {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+  #startupLoader.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-        .loader-content {
-            text-align: center;
-        }
+  .loader-content {
+    text-align: center;
+  }
 
-        .loader-logo {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(50px, 10vw, 100px);
-            font-weight: 700;
-            letter-spacing: 8px;
-            color: var(--lime);
-            animation: loaderLogo 1.5s ease infinite alternate;
-        }
+  .loader-logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(50px, 10vw, 100px);
+    font-weight: 700;
+    letter-spacing: 8px;
+    color: var(--lime);
+    animation: loaderLogo 1.5s ease infinite alternate;
+  }
 
-        @keyframes loaderLogo {
+  @keyframes loaderLogo {
 
-            from {
-                opacity: .3;
-                transform: scale(.95);
-            }
+    from {
+      opacity: .3;
+      transform: scale(.95);
+    }
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-                text-shadow: 0 0 40px rgba(183, 255, 74, .5);
-            }
+    to {
+      opacity: 1;
+      transform: scale(1);
+      text-shadow: 0 0 40px rgba(183, 255, 74, .5);
+    }
 
-        }
+  }
 
-        .loader-line {
-            width: 230px;
-            height: 3px;
-            margin: 25px auto 15px;
-            background: rgba(255, 255, 255, .12);
-            overflow: hidden;
-            border-radius: 20px;
-        }
+  .loader-line {
+    width: 230px;
+    height: 3px;
+    margin: 25px auto 15px;
+    background: rgba(255, 255, 255, .12);
+    overflow: hidden;
+    border-radius: 20px;
+  }
 
-        .loader-line span {
-            display: block;
-            width: 45%;
-            height: 100%;
-            background: var(--lime);
-            animation: loaderProgress 1.8s ease infinite;
-        }
+  .loader-line span {
+    display: block;
+    width: 45%;
+    height: 100%;
+    background: var(--lime);
+    animation: loaderProgress 1.8s ease infinite;
+  }
 
-        @keyframes loaderProgress {
+  @keyframes loaderProgress {
 
-            from {
-                transform: translateX(-150%);
-            }
+    from {
+      transform: translateX(-150%);
+    }
 
-            to {
-                transform: translateX(500%);
-            }
+    to {
+      transform: translateX(500%);
+    }
 
-        }
+  }
 
-        .loader-content p {
-            color: var(--muted);
-            font-size: 13px;
-            letter-spacing: 2px;
-        }
+  .loader-content p {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
 
   /* ================= Scroll ================= */
 
@@ -173,7 +171,7 @@
     flex-direction: column;
     gap: 18px;
     z-index: 1000;
-      
+
   }
 
   .dot-item {
@@ -181,7 +179,7 @@
     align-items: center;
     gap: 10px;
     text-decoration: none;
-   
+
   }
 
   .dot {
@@ -190,7 +188,7 @@
     border-radius: 50%;
     border: 2px solid var(--gray);
     transition: .3s;
-  
+
   }
 
   .label {
@@ -250,65 +248,65 @@
     gap: 20px;
   }
 
- .navbar-s4 {
-            display: none;
-            font-size: 22px;
-            cursor: pointer;
-        }
+  .navbar-s4 {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+  }
 
-        /* =====================================================
+  /* =====================================================
            SIDE NAV
         ===================================================== */
 
-        #sidenav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(82%, 340px);
-            height: 100vh;
-            z-index: 2000;
-            padding: 25px;
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 255, 255, .13),
-                    rgba(255, 255, 255, .035));
-            backdrop-filter: blur(25px) saturate(140%);
-            border-left: 1px solid var(--border);
-            transition: .5s cubic-bezier(.77, 0, .18, 1);
-        }
+  #sidenav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(82%, 340px);
+    height: 100vh;
+    z-index: 2000;
+    padding: 25px;
+    background:
+      linear-gradient(135deg,
+        rgba(255, 255, 255, .13),
+        rgba(255, 255, 255, .035));
+    backdrop-filter: blur(25px) saturate(140%);
+    border-left: 1px solid var(--border);
+    transition: .5s cubic-bezier(.77, 0, .18, 1);
+  }
 
-        #sidenav.active {
-            right: 0;
-        }
+  #sidenav.active {
+    right: 0;
+  }
 
-        .close-nav {
-            text-align: right;
-            font-size: 22px;
-            cursor: pointer;
-        }
+  .close-nav {
+    text-align: right;
+    font-size: 22px;
+    cursor: pointer;
+  }
 
-        .side-menu {
-            margin-top: 80px;
-            display: grid;
-            gap: 25px;
-            list-style: none;
-        }
+  .side-menu {
+    margin-top: 80px;
+    display: grid;
+    gap: 25px;
+    list-style: none;
+  }
 
-        .side-menu a {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 18px;
-            border-radius: 16px;
-            color: white;
-            background: rgba(255, 255, 255, .05);
-            transition: .3s;
-        }
+  .side-menu a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 16px;
+    color: white;
+    background: rgba(255, 255, 255, .05);
+    transition: .3s;
+  }
 
-        .side-menu a:hover {
-            color: var(--lime);
-            transform: translateX(8px);
-        }
+  .side-menu a:hover {
+    color: var(--lime);
+    transform: translateX(8px);
+  }
 
 
 
@@ -464,7 +462,7 @@
     overflow: hidden;
 
     scroll-margin-top: 95px;
-    
+
   }
 
   header::before {
@@ -694,7 +692,7 @@
     transform: translateY(-12px);
 
     border-left: solid 4px;
-     border-right: solid 4px;
+    border-right: solid 4px;
     border-color: rgba(170, 240, 31, 0.655);
 
     box-shadow: 0 20px 50px rgba(253, 253, 253, 0.508);
@@ -877,15 +875,15 @@
 
   /* ================= PROJECTS ================= */
 
-  .work{
-     scroll-margin-top: 95px;
+  .work {
+    scroll-margin-top: 95px;
   }
 
   .work>div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-   
+
   }
 
   .work>div>div {
@@ -948,11 +946,11 @@
   }
 
   /* ================= CONTACT FORM ================= */
-   
-  #contact{
+
+  #contact {
     scroll-margin-top: 95px;
   }
-  
+
 
   .contact-form,
   .contact-info {
@@ -1035,7 +1033,7 @@
   }
 
   /* ================= CONTACT INFO ================= */
-  
+
   .contact-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1131,17 +1129,17 @@
     border-top: 1px solid var(--border);
 
     text-align: center;
-    color:var(--white);
+    color: var(--white);
   }
 
   /* ================= RESPONSIVE ================= */
 
   @media (max-width: 768px) {
 
-    
+
     .dots {
-   display: none;
-  }
+      display: none;
+    }
 
 
     header {
@@ -1153,24 +1151,26 @@
     }
 
     nav {
-      
+
       flex-wrap: wrap;
     }
-    
 
-    .btn--primary{
+
+    .btn--primary {
       font-size: 12PX;
       padding: 10PX 20PX;
     }
-    .btn--ghost{
-    font-size: 12PX;
-    padding: 10PX 20PX;
+
+    .btn--ghost {
+      font-size: 12PX;
+      padding: 10PX 20PX;
     }
 
-    .nav-menu{
-     display: none;
+    .nav-menu {
+      display: none;
     }
-    .navbar-s4{
+
+    .navbar-s4 {
       display: flex;
       padding: 10px;
     }
@@ -1236,7 +1236,7 @@
       font-size: 35px;
     }
 
-    
+
   }
 </style>
 
@@ -1244,25 +1244,25 @@
 
   <!-- STARTUP LOADER -->
 
-    <div id="startupLoader">
+  <div id="startupLoader">
 
-        <div class="loader-content">
+    <div class="loader-content">
 
-            <div class="loader-logo">
-                CREW
-            </div>
+      <div class="loader-logo">
+        CREW
+      </div>
 
-            <div class="loader-line">
-                <span></span>
-            </div>
+      <div class="loader-line">
+        <span></span>
+      </div>
 
-            <p>
-                Building something amazing...
-            </p>
-
-        </div>
+      <p>
+        Building something amazing...
+      </p>
 
     </div>
+
+  </div>
 
   <!-- ================= Scroll ================= -->
 
@@ -1290,7 +1290,7 @@
 
   </div>
 
-<!-- ================= navbar ================= -->
+  <!-- ================= navbar ================= -->
 
 
   <div class="global-navbar">
@@ -1310,53 +1310,53 @@
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
     </div>
-      <div class="navbar-s4" id="menuicon">
-            <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
-        </div>
+    <div class="navbar-s4" id="menuicon">
+      <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
+    </div>
   </div>
 
-   
 
 
-    <aside id="sidenav">
+
+  <aside id="sidenav">
 
     <div class="close-nav" id="closenav">
-        <i class="fa-solid fa-xmark"></i>
+      <i class="fa-solid fa-xmark"></i>
     </div>
 
     <ul class="side-menu">
 
-        <li>
-            <a href="#home">
-                <i class="fa-solid fa-house"></i>
-                Home
-            </a>
-        </li>
+      <li>
+        <a href="#home">
+          <i class="fa-solid fa-house"></i>
+          Home
+        </a>
+      </li>
 
-        <li>
-            <a href="./aboutus.html">
-                <i class="fa-solid fa-users"></i>
-                About Us
-            </a>
-        </li>
+      <li>
+        <a href="./aboutus.html">
+          <i class="fa-solid fa-users"></i>
+          About Us
+        </a>
+      </li>
 
-        <li>
-            <a href="#work">
-                <i class="fa-solid fa-briefcase"></i>
-                Our Work
-            </a>
-        </li>
+      <li>
+        <a href="#work">
+          <i class="fa-solid fa-briefcase"></i>
+          Our Work
+        </a>
+      </li>
 
-        <li>
-            <a href="#contact">
-                <i class="fa-solid fa-phone"></i>
-                Contact
-            </a>
-        </li>
+      <li>
+        <a href="#contact">
+          <i class="fa-solid fa-phone"></i>
+          Contact
+        </a>
+      </li>
 
     </ul>
 
-</aside>
+  </aside>
 
   <!-- ================= HEADER ================= -->
   <header id="home">
@@ -1376,28 +1376,28 @@
 
     <!-- Prem (Spans 2 columns via .team > div:first-of-type) -->
     <div>
-       <a href="./Aboutus.html">
-      <div class="profile">
-      <span class="online"> <img src="./image/bg3.JPG" alt="photo"></span>
-      </div>
-      <h3>Prem Kumar</h3>
-      <p class="role">Founder &amp; Product Lead</p>
-      <p class="bio">Visionary architect bridging the gap between innovative strategy and technical execution.</p>
+      <a href="./Aboutus.html">
+        <div class="profile">
+          <span class="online"> <img src="./image/bg3.JPG" alt="photo"></span>
+        </div>
+        <h3>Prem Kumar</h3>
+        <p class="role">Founder &amp; Product Lead</p>
+        <p class="bio">Visionary architect bridging the gap between innovative strategy and technical execution.</p>
       </a>
     </div>
     </div>
 
     <!-- Pratheesh -->
     <div>
-       <a href="./Aboutus.html">
-      <div class="profile">
-       <span class="online"> <img src="./image/Pratheesh.jpg" alt="photo"></span>
+      <a href="./Aboutus.html">
+        <div class="profile">
+          <span class="online"> <img src="./image/Pratheesh.jpg" alt="photo"></span>
 
-      </div>
-      <h3>Pratheesh</h3>
-      <p class="role">UI / UX Designer</p>
-      <p class="bio">Crafting smooth interfaces, human-centric user pathways, and stunning interactive layouts.</p>
-       </a>
+        </div>
+        <h3>Pratheesh</h3>
+        <p class="role">UI / UX Designer</p>
+        <p class="bio">Crafting smooth interfaces, human-centric user pathways, and stunning interactive layouts.</p>
+      </a>
 
     </div>
     </div>
@@ -1405,15 +1405,15 @@
     <!-- Lithish -->
     <div>
 
-       <a href="./Aboutus.html">
-      
-      <div class="profile">
-      <span class="online"></span>
+      <a href="./Aboutus.html">
 
-      </div>
-      <h3>Lithish</h3>
-      <p class="role">Frontend Engineer</p>
-      <p class="bio">Breathing life into mockups using cutting edge CSS transitions and interactive physics.</p>
+        <div class="profile">
+          <span class="online"></span>
+
+        </div>
+        <h3>Lithish</h3>
+        <p class="role">Frontend Engineer</p>
+        <p class="bio">Breathing life into mockups using cutting edge CSS transitions and interactive physics.</p>
       </a>
 
     </div>
@@ -1422,15 +1422,15 @@
     <!-- Thanushiya -->
     <div>
 
-       <a href="Aboutus.html">
-      
-      <div class="profile">
-      <span class="online"> <img src="./image/tha.jpg" alt="photo"></span>
+      <a href="Aboutus.html">
 
-      </div>
-      <h3>Thanushiya</h3>
-      <p class="role">Backend Engineer</p>
-      <p class="bio">Structuring data microservices, building secure APIs, and maintaining cloud databases.</p>
+        <div class="profile">
+          <span class="online"> <img src="./image/tha.jpg" alt="photo"></span>
+
+        </div>
+        <h3>Thanushiya</h3>
+        <p class="role">Backend Engineer</p>
+        <p class="bio">Structuring data microservices, building secure APIs, and maintaining cloud databases.</p>
       </a>
 
     </div>
@@ -1438,16 +1438,16 @@
 
     <!-- Jayasri -->
     <div>
-       <a href="./Aboutus.html">
-      
-      <div class="profile">
-      <span class="online"> <img src="./image/jayasri.jpg" alt="photo"></span>
+      <a href="./Aboutus.html">
 
-      </div>
-      <h3>Jayasri</h3>
-      <p class="role">Marketing &amp; Growth</p>
-      <p class="bio">Scaling web applications through conversion rate optimization and calculated market outreach.</p>
-     </a>
+        <div class="profile">
+          <span class="online"> <img src="./image/jayasri.jpg" alt="photo"></span>
+
+        </div>
+        <h3>Jayasri</h3>
+        <p class="role">Marketing &amp; Growth</p>
+        <p class="bio">Scaling web applications through conversion rate optimization and calculated market outreach.</p>
+      </a>
 
     </div>
     </div>
@@ -1459,24 +1459,24 @@
     <div>
       <!-- Project 1  -->
       <div>
-        <a href="./aboutus.html#nostra">
-        <h3>Nostra</h3>
-        <p>Premium Apparel E-Commerce Experience.</p>
+        <a href="./Aboutus.html#work" class="work-slide">
+          <h3>Nostra</h3>
+          <p>Premium Apparel E-Commerce Experience.</p>
         </a>
-    
+
       </div>
       <!-- Project 2 -->
       <div>
-        <a href="./aboutus.html#greenden" class="work-slide">
-        <h3>GreenDen</h3>
-        <p>Biophilic Interior Decor Marketplace.</p>
+        <a href="./Aboutus.html#work" class="work-slide">
+          <h3>GreenDen</h3>
+          <p>Biophilic Interior Decor Marketplace.</p>
         </a>
       </div>
       <!-- Project 3  -->
       <div>
-        <a href="./aboutus.html#trip">
-        <h3>Trip Adviser</h3>
-        <p>Next-Gen Immersive Travel Planning Webpage.</p>
+        <a href="./Aboutus.html#work" class="work-slide">
+          <h3>Trip Adviser</h3>
+          <p>Next-Gen Immersive Travel Planning Webpage.</p>
         </a>
       </div>
     </div>
@@ -1523,22 +1523,22 @@
 
   <script>
 
-    
-       /* =====================================================
-           STARTUP LOADER
-        ===================================================== */
 
-        window.addEventListener("load", () => {
+    /* =====================================================
+        STARTUP LOADER
+     ===================================================== */
 
-            setTimeout(() => {
+    window.addEventListener("load", () => {
 
-                document
-                    .getElementById("startupLoader")
-                    .classList.add("hide");
+      setTimeout(() => {
 
-            }, 2000);
+        document
+          .getElementById("startupLoader")
+          .classList.add("hide");
 
-        });
+      }, 2000);
+
+    });
 
 
     const sections = document.querySelectorAll("  header, section");
@@ -1569,19 +1569,19 @@
 
     // selecting Side Navbar, Menuicon
 
-var sidenav = document.getElementById("sidenav")
-var menuicon = document.getElementById("menuicon")
-var closenav =document.getElementById("closenav")
+    var sidenav = document.getElementById("sidenav")
+    var menuicon = document.getElementById("menuicon")
+    var closenav = document.getElementById("closenav")
 
-menuicon.addEventListener( "click", function(){
-    sidenav.style.right="0%"
-}
+    menuicon.addEventListener("click", function () {
+      sidenav.style.right = "0%"
+    }
 
-)
+    )
 
-closenav.addEventListener("click", function(){
-    sidenav.style.right="-70%"
-})
+    closenav.addEventListener("click", function () {
+      sidenav.style.right = "-70%"
+    })
 
 
 
