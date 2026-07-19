@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CREW — Digital Team</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #05070b;
+            --card: rgba(255, 255, 255, .07);
+            --border: rgba(255, 255, 255, .14);
+            --white: #ffffff;
+            --muted: #9ca3af;
+            --lime: #b7ff4a;
+            --cyan: #63e6ff;
+            --purple: #9b7cff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            overflow-x: hidden;
+            animation: pageReveal 1s ease;
+            background: url(./image/main.png);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .25;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 55px 55px;
+            z-index: -2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @keyframes pageReveal {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* =====================================================
+           STARTUP LOADER
+        ===================================================== */
+
+        #startupLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #05070b;
+            transition: opacity .8s ease, visibility .8s ease;
+        }
+
+        #startupLoader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(50px, 10vw, 100px);
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: var(--lime);
+            animation: loaderLogo 1.5s ease infinite alternate;
+        }
+
+        @keyframes loaderLogo {
+
+            from {
+                opacity: .3;
+                transform: scale(.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+                text-shadow: 0 0 40px rgba(183, 255, 74, .5);
+            }
+
+        }
+
+        .loader-line {
+            width: 230px;
+            height: 3px;
+            margin: 25px auto 15px;
+            background: rgba(255, 255, 255, .12);
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .loader-line span {
+            display: block;
+            width: 45%;
+            height: 100%;
+            background: var(--lime);
+            animation: loaderProgress 1.8s ease infinite;
+        }
+
+        @keyframes loaderProgress {
+
+            from {
+                transform: translateX(-150%);
+            }
+
+            to {
+                transform: translateX(500%);
+            }
+
+        }
+
+        .loader-content p {
+            color: var(--muted);
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+    
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .global-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: .4s ease;
+        }
+
+        .global-navbar.scrolled {
+            background: rgba(5, 7, 11, .72);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            width: min(92%, 1250px);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-shapes {
+            width: 30px;
+            height: 30px;
+            position: relative;
+        }
+
+        .shape-1,
+        .shape-2 {
+            position: absolute;
+            width: 17px;
+            height: 21px;
+            border-radius: 5px;
+            border: 2px solid var(--bg);
+        }
+
+        .shape-1 {
+            top: 0;
+            left: 0;
+            background: var(--lime);
+        }
+
+        .shape-2 {
+            right: 0;
+            bottom: 0;
+            background: white;
+        }
+
+        .logo-text {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            border: 1px solid transparent;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #d1d5db;
+            transition: .3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--lime);
+            border-color: var(--border);
+            background: rgba(255, 255, 255, .06);
+            transform: translateY(-3px);
+        }
+
+        .navbar-s4 {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           SIDE NAV
+        ===================================================== */
+
+        #sidenav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(82%, 340px);
+            height: 100vh;
+            z-index: 2000;
+            padding: 25px;
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 255, 255, .13),
+                    rgba(255, 255, 255, .035));
+            backdrop-filter: blur(25px) saturate(140%);
+            border-left: 1px solid var(--border);
+            transition: .5s cubic-bezier(.77, 0, .18, 1);
+        }
+
+        #sidenav.active {
+            right: 0;
+        }
+
+        .close-nav {
+            text-align: right;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .side-menu {
+            margin-top: 80px;
+            display: grid;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .side-menu a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border-radius: 16px;
+            color: white;
+            background: rgba(255, 255, 255, .05);
+            transition: .3s;
+        }
+
+        .side-menu a:hover {
+            color: var(--lime);
+            transform: translateX(8px);
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .team-section {
+            min-height: 100vh;
+            position: relative;
+            padding: 150px 0 70px;
+            overflow: hidden;
+            isolation: isolate;
+            animation: sectionReveal 1s ease both;
+          
+        }
+
+        #background {
+            position: absolute;
+            inset: 0;
+            z-index: -3;
+            background-size: cover;
+            background-position: center;
+            transition: 1s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(5, 7, 11, .98) 5%, rgba(5, 7, 11, .78) 42%, rgba(5, 7, 11, .25)),
+                linear-gradient(0deg, #05070b 0%, transparent 50%);
+        }
+
+        .glow {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: var(--lime);
+            filter: blur(160px);
+            opacity: .12;
+            z-index: -1;
+            top: 10%;
+            right: 10%;
+            animation: pulseGlow 5s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+
+            from {
+                transform: scale(.8);
+                opacity: .08;
+            }
+
+            to {
+                transform: scale(1.2);
+                opacity: .18;
+            }
+
+        }
+
+        .hero-container {
+            width: min(92%, 1250px);
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+              
+        }
+
+        .content {
+            animation: revealLeft .8s ease;
+        }
+
+        @keyframes revealLeft {
+
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--lime);
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: var(--lime);
+        }
+
+        #memberName {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(48px, 6vw, 88px);
+            line-height: .95;
+            letter-spacing: -4px;
+            margin-bottom: 22px;
+            animation: textIn .5s ease;
+        }
+
+        @keyframes textIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        #memberRole {
+            color: var(--lime);
+            font-size: clamp(19px, 2vw, 27px);
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+
+        #memberAbout {
+            max-width: 560px;
+            color: #cbd5e1;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        #skills {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        #skills li {
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: #d1d5db;
+            background: rgba(255, 255, 255, .05);
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        #skills li:hover {
+            color: var(--bg);
+            background: var(--lime);
+            transform: translateY(-4px);
+        }
+
+        /* =====================================================
+           SOCIAL ICONS
+        ===================================================== */
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .social-icons a {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid var(--border);
+            transition: .35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a:hover {
+            color: var(--bg);
+            background: var(--lime);
+            border-color: var(--lime);
+            transform: translateY(-6px) rotate(8deg);
+            box-shadow: 0 10px 25px rgba(183, 255, 74, .25);
+        }
+
+        /* =====================================================
+           ONE RESPONSIVE POP CIRCLE
+        ===================================================== */
+
+        .image-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            animation: imageReveal 1s ease;
+        }
+
+        .image-box::before {
+            content: "";
+            position: absolute;
+            width: 70%;
+            height: 90%;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(183, 255, 74, .5);
+            transition: .45s ease;
+            z-index: 1;
+        }
+
+        .image-box:hover::before,
+        .image-box:active::before,
+        .image-box.circle-active::before {
+            background: var(--lime);
+            transform: scale(1.12);
+            box-shadow:
+                0 0 35px rgba(183, 255, 74, .8),
+                0 0 100px rgba(183, 255, 74, .35);
+        }
+
+        @keyframes imageReveal {
+
+            from {
+                opacity: 0;
+                transform: scale(.8) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
+        }
+
+        #mainImage {
+            width: min(450px, 90%);
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 45% 55% 50% 50%;
+            border: 1px solid rgba(255, 255, 255, .3);
+            box-shadow:
+                0 0 0 15px rgba(255, 255, 255, .025),
+                0 30px 100px rgba(0, 0, 0, .6);
+            position: relative;
+            z-index: 2;
+            transition: .6s ease;
+        }
+
+        #mainImage:hover {
+            transform: scale(1.04) rotate(2deg);
+        }
+
+        /* =====================================================
+           TEAM CARDS
+        ===================================================== */
+
+        .member-navigation {
+            width: min(92%, 1250px);
+            margin: 70px auto 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+
+        .member-card {
+            position: relative;
+            min-height: 125px;
+            padding: 18px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 255, 255, .13),
+                    rgba(255, 255, 255, .035));
+            border: 1px solid var(--border);
+            backdrop-filter: blur(25px) saturate(140%);
+            transition: .4s cubic-bezier(.2, .8, .2, 1);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .member-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(183, 255, 74, .15), transparent);
+            transform: translateX(-100%);
+            transition: .6s;
+        }
+
+        .member-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, .18),
+                    transparent 35%,
+                    transparent 70%,
+                    rgba(183, 255, 74, .08));
+            opacity: .6;
+        }
+
+        .member-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .member-card:hover,
+        .member-card.active {
+            border-color: var(--lime);
+            transform:
+                translateY(-12px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, .35);
+        }
+
+        .member-card.active {
+            background: rgba(183, 255, 74, .1);
+        }
+
+        .member-card img {
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--lime);
+            transition: .5s ease;
+        }
+
+        .member-card:hover img {
+            transform: translateZ(25px) scale(1.08);
+        }
+
+        .member-card h4,
+        .member-card p {
+            transition: .4s ease;
+        }
+
+        .member-card:hover h4 {
+            transform: translateZ(20px);
+        }
+
+        .member-card:hover p {
+            transform: translateZ(15px);
+        }
+
+        .member-card h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .member-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           WORK SECTION
+        ===================================================== */
+
+        .work-section {
+            padding: 120px 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(155, 124, 255, .1), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(99, 230, 255, .08), transparent 30%),
+                #070a11;
+            animation: sectionReveal 1s ease both;
+        }
+
+        @keyframes sectionReveal {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .work-heading {
+            width: min(92%, 1250px);
+            margin: auto auto 55px;
+        }
+
+        .work-heading span {
+            color: var(--lime);
+            letter-spacing: 3px;
+            font-size: 13px;
+        }
+
+        .work-heading h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(45px, 7vw, 90px);
+            letter-spacing: -4px;
+            margin: 12px 0;
+        }
+
+        .work-heading p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .work-slider {
+            width: min(92%, 1250px);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .work-track {
+            width: 100%;
+        }
+
+        .work-slide {
+            display: none;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 30px;
+            padding: 28px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(25px);
+            position: relative;
+        }
+
+        .work-slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, .18),
+                    transparent 35%,
+                    transparent 70%,
+                    rgba(183, 255, 74, .08));
+            opacity: .6;
+        }
+
+        .work-slide.active {
+            display: grid;
+        }
+
+        .work-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            transform: translateZ(15px);
+        }
+
+        .crumb {
+            color: var(--lime);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .work-text h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(40px, 5vw, 70px);
+            letter-spacing: -3px;
+            margin-bottom: 15px;
+        }
+
+        .desc {
+            color: #cbd5e1;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tags span {
+            padding: 8px 13px;
+            border-radius: 20px;
+            color: var(--bg);
+            background: var(--lime);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .features {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            color: #d1d5db;
+            margin-bottom: 25px;
+        }
+
+        .features li::before {
+            content: "↗";
+            color: var(--lime);
+            margin-right: 10px;
+        }
+
+        .work-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .work-links a {
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-btn {
+            color: var(--bg);
+            background: var(--lime);
+        }
+
+        .code-btn {
+            border: 1px solid var(--border);
+        }
+
+        .code-btn:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+
+        .work-image-box {
+            min-height: 450px;
+            overflow: hidden;
+            border-radius: 25px;
+            transform: translateZ(20px);
+        }
+
+        .work-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s;
+        }
+
+        .work-image-box:hover img {
+            transform: scale(1.06);
+        }
+
+        .work-btn {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            color: var(--lime);
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            font-size: 20px;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-btn:hover {
+            color: var(--bg);
+            background: var(--lime);
+            transform: scale(1.1);
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #475569;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .dot.active {
+            width: 28px;
+            border-radius: 20px;
+            background: var(--lime);
+        }
+
+        /* =====================================================
+           LIGHT REFLECTION
+        ===================================================== */
+
+        .social-icons a::before,
+        .work-links a::before,
+        .work-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+                    rgba(255, 255, 255, .35),
+                    transparent 35%);
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .social-icons a:hover::before,
+        .work-links a:hover::before,
+        .work-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .nav-menu {
+                display: none;
+            }
+
+            .navbar-s4 {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 45px;
+            }
+
+            .content {
+                order: 2;
+            }
+
+            .image-box {
+                order: 1;
+            }
+
+            #memberAbout {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #skills {
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .member-navigation {
+                display: flex;
+                overflow-x: auto;
+                padding: 10px 5px 20px;
+                scrollbar-width: none;
+            }
+
+            .member-navigation::-webkit-scrollbar {
+                display: none;
+            }
+
+            .member-card {
+                min-width: 220px;
+            }
+
+            .work-slide {
+                grid-template-columns: 1fr;
+            }
+
+            .work-image-box {
+                min-height: 350px;
+                order: -1;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .team-section {
+                padding-top: 120px;
+            }
+
+            #memberName {
+                font-size: clamp(42px, 13vw, 65px);
+                letter-spacing: -2px;
+            }
+
+            #memberRole {
+                font-size: 20px;
+            }
+
+            #memberAbout {
+                font-size: 15px;
+            }
+
+            .member-card {
+                min-width: 190px;
+                min-height: 105px;
+                padding: 14px;
+            }
+
+            .member-card img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .work-section {
+                padding: 80px 0;
+            }
+
+            .work-heading h2 {
+                letter-spacing: -2px;
+            }
+
+            .work-slide {
+                padding: 15px;
+                border-radius: 22px;
+            }
+
+            .work-text {
+                padding: 8px;
+            }
+
+            .work-text h3 {
+                font-size: 45px;
+            }
+
+            .work-image-box {
+                min-height: 220px;
+                border-radius: 18px;
+            }
+
+            .work-slider {
+                position: relative;
+            }
+
+            .work-btn {
+                position: absolute;
+                z-index: 5;
+                width: 40px;
+                height: 40px;
+            }
+
+            .prev-btn {
+                left: -8px;
+            }
+
+            .next-btn {
+                right: -8px;
+            }
+
+        }
+
+        @media (max-width: 380px) {
+
+            .logo-text {
+                font-size: 23px;
+            }
+
+            .member-card {
+                min-width: 170px;
+            }
+
+            .work-text h3 {
+                font-size: 38px;
+            }
+
+            .work-links {
+                flex-direction: column;
+            }
+
+            .work-links a {
+                text-align: center;
+                width: 100%;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- STARTUP LOADER -->
+
+    <div id="startupLoader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                CREW
+            </div>
+
+            <div class="loader-line">
+                <span></span>
+            </div>
+
+            <p>
+                Building something amazing...
+            </p>
+
+        </div>
+
+    </div>
+    
+
+    <!-- NAVBAR -->
+
+    <header class="global-navbar" id="navbar">
+
+        <div class="nav-inner">
+
+            <a href="#home" class="logo-wrapper">
+
+                <div class="logo-shapes">
+                    <span class="shape-1"></span>
+                    <span class="shape-2"></span>
+                </div>
+
+                <span class="logo-text">
+                    CREW
+                </span>
+
+            </a>
+
+            <nav class="nav-menu">
+
+                <a href="./index1.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="#team" class="nav-link">
+                    About Us
+                </a>
+
+                <a href="#work" class="nav-link">
+                    Work
+                </a>
+
+                <a href="index1.html#contact" class="nav-link">
+                    Contact
+                </a>
+
+            </nav>
+
+            <div class="navbar-s4" id="menuicon">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- MOBILE NAV -->
+
+    <aside id="sidenav">
+
+        <div class="close-nav" id="closenav">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </div>
+
+        <ul class="side-menu">
+
+            <li>
+                <a href="./index1.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-users"></i>
+                    About Us
+                </a>
+            </li>
+
+            <li>
+                <a href="#work">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Our Work
+                </a>
+            </li>
+
+            <li>
+                <a href="./index1.html#contact">
+                    <i class="fa-solid fa-phone"></i>
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- TEAM HERO -->
+
+    <section class="team-section" id="home">
+
+        <div id="background"></div>
+
+        <div class="overlay"></div>
+
+        <div class="glow"></div>
+
+        <div class="hero-container" id="team">
+
+            <div class="content">
+
+                <div class="eyebrow">
+                    Meet the minds
+                </div>
+
+                <h1 id="memberName">
+                    Prem Kumar
+                </h1>
+
+                <h2 id="memberRole">
+                    Founder & Product Lead
+                </h2>
+
+                <p id="memberAbout">
+                    Turning innovative ideas into reality and building premium digital experiences.
+                </p>
+
+                <ul id="skills"></ul>
+
+                <!-- SOCIAL ICONS -->
+
+                <div class="social-icons">
+
+                    <a id="instagramLink" href="#" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a id="linkedinLink" href="#" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a id="githubLink" href="#" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="image-box">
+
+                <img id="mainImage" src="prem.png" alt="Team member">
+
+            </div>
+
+        </div>
+
+        <!-- TEAM CARDS -->
+
+        <div class="member-navigation" id="member">
+
+            <div class="member-card active" >
+
+                <img src="./image/bg3.JPG">
+
+                <div>
+
+                    <h4>
+                        Prem Kumar
+                    </h4>
+
+                    <p>
+                        Founder
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="member-card">
+
+                <img src="pratheesh.jpg">
+
+                <div>
+
+                    <h4>
+                        Pratheesh
+                    </h4>
+
+                    <p>
+                        UI / UX
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="member-card">
+
+                <img src="lithish.jpg">
+
+                <div>
+
+                    <h4>
+                        Lithish
+                    </h4>
+
+                    <p>
+                        Frontend
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="member-card">
+
+                <img src="./image/tha.jpg">
+
+                <div>
+
+                    <h4>
+                        Thanushiya
+                    </h4>
+
+                    <p>
+                        Backend
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="member-card">
+
+                <img src="jayasri.jpg">
+
+                <div>
+
+                    <h4>
+                        Jayasri
+                    </h4>
+
+                    <p>
+                        Marketing
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- WORK SECTION -->
+
+    <section class="work-section" id="work">
+
+        <div class="work-heading">
+
+            <span>
+                SELECTED PROJECTS
+            </span>
+
+            <h2>
+                OUR WORK
+            </h2>
+
+            <p>
+                Ideas transformed into digital experiences.
+            </p>
+
+        </div>
+
+        <div class="work-slider" id="nostra">
+
+            <button class="work-btn prev-btn" onclick="changeSlide(-1)">
+                ←
+            </button>
+
+            <div class="work-track">
+
+                <div class="work-slide active">
+
+                    <div class="work-text">
+
+                        <p class="crumb">
+                            01 / E-COMMERCE
+                        </p>
+
+                        <h3>
+                            NOSTRA
+                        </h3>
+
+                        <p class="desc">
+                            A premium apparel e-commerce experience crafted with clean interfaces and smooth
+                            interactions.
+                        </p>
+
+                        <div class="tags">
+
+                            <span>
+                                HTML
+                            </span>
+
+                            <span>
+                                CSS
+                            </span>
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                        </div>
+
+                        <ul class="features">
+
+                            <li>
+                                Fully Responsive
+                            </li>
+
+                            <li>
+                                Product Search
+                            </li>
+
+                            <li>
+                                Shopping Cart
+                            </li>
+
+                        </ul>
+
+                        <div class="work-links">
+
+                            <a href="#" class="live-btn">
+                                Live Demo ↗
+                            </a>
+
+                            <a href="#" class="code-btn">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="work-image-box">
+
+                        <img src="./image/work (1).png" alt="Nostra Project">
+
+                    </div>
+
+                </div>
+
+                <div class="work-slide" id="greenden">
+
+                    <div class="work-text">
+
+                        <p class="crumb">
+                            02 / MARKETPLACE
+                        </p>
+
+                        <h3>
+                            GREENDEN
+                        </h3>
+
+                        <p class="desc">
+                            A modern biophilic marketplace designed to bring nature-inspired products to life.
+                        </p>
+
+                        <div class="tags">
+
+                            <span>
+                                HTML
+                            </span>
+
+                            <span>
+                                CSS
+                            </span>
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                        </div>
+
+                        <ul class="features">
+
+                            <li>
+                                Responsive Layout
+                            </li>
+
+                            <li>
+                                Product Cards
+                            </li>
+
+                            <li>
+                                Clean Interface
+                            </li>
+
+                        </ul>
+
+                        <div class="work-links">
+
+                            <a href="#" class="live-btn">
+                                Live Demo ↗
+                            </a>
+
+                            <a href="#" class="code-btn">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="work-image-box">
+
+                        <img src="./image/work (2).png" alt="GreenDen ">
+
+                    </div>
+
+                </div>
+
+                <div class="work-slide" id="trip">
+
+                    <div class="work-text">
+
+                        <p class="crumb">
+                            03 / TRAVEL TECH
+                        </p>
+
+                        <h3>
+                            TRIP ADVISER
+                        </h3>
+
+                        <p class="desc">
+                            An immersive travel planning experience built for modern explorers.
+                        </p>
+
+                        <div class="tags">
+
+                            <span>
+                                HTML
+                            </span>
+
+                            <span>
+                                CSS
+                            </span>
+
+                            <span>
+                                JavaScript
+                            </span>
+
+                        </div>
+
+                        <ul class="features">
+
+                            <li>
+                                Travel Cards
+                            </li>
+
+                            <li>
+                                Booking UI
+                            </li>
+
+                            <li>
+                                Modern Design
+                            </li>
+
+                        </ul>
+
+                        <div class="work-links">
+
+                            <a href="#" class="live-btn">
+                                Live Demo ↗
+                            </a>
+
+                            <a href="#" class="code-btn">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="work-image-box">
+
+                        <img src="./image/work (3).png" alt="Trip Adviser Project">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="work-btn next-btn" onclick="changeSlide(1)">
+                →
+            </button>
+
+        </div>
+
+        <div class="dots">
+
+            <span class="dot active" onclick="goToSlide(0)"></span>
+
+            <span class="dot" onclick="goToSlide(1)"></span>
+
+            <span class="dot" onclick="goToSlide(2)"></span>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        /* =====================================================
+           TEAM MEMBERS
+        ===================================================== */
+
+        const members = [
+
+            {
+                name: "Prem Kumar",
+                role: "Founder & Product Lead",
+                about: "Turning innovative ideas into reality and building premium digital experiences.",
+                image: "./image/bg3.JPG",
+                background: "bg1.jpg",
+
+                skills: [
+                    "Leadership",
+                    "Project Management",
+                    "UI Planning",
+                    "Problem Solving"
+                ],
+
+                social: {
+                    instagram: "#",
+                    linkedin: "#",
+                    github: "#"
+                }
+            },
+
+            {
+                name: "Pratheesh",
+                role: "UI / UX Designer",
+                about: "Designs beautiful interfaces with a strong focus on user experience.",
+                image: "pratheesh.png",
+                background: "bg2.jpg",
+
+                skills: [
+                    "Figma",
+                    "Wireframing",
+                    "UI Design",
+                    "UX Research"
+                ],
+
+                social: {
+                    instagram: "#",
+                    linkedin: "#",
+                    github: "#"
+                }
+            },
+
+            {
+                name: "Lithish",
+                role: "Frontend Engineer",
+                about: "Builds responsive and engaging digital experiences using modern frontend technologies.",
+                image: "lithish.png",
+                background: "bg.jpg",
+
+                skills: [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "Responsive Design"
+                ],
+
+                social: {
+                    instagram: "#",
+                    linkedin: "#",
+                    github: "#"
+                }
+            },
+
+            {
+                name: "Thanushiya",
+                role: "Backend Engineer",
+                about: "Develops secure APIs and builds reliable database-driven systems.",
+                image: "./image/tha.jpg",
+                background: "bg4.jpg",
+
+                skills: [
+                    "Node.js",
+                    "Express",
+                    "MongoDB",
+                    "REST APIs"
+                ],
+
+                social: {
+                    instagram: "#",
+                    linkedin: "#",
+                    github: "#"
+                }
+            },
+
+            {
+                name: "Jayasri",
+                role: "Marketing & Growth",
+                about: "Focused on growth, brand visibility and creating meaningful digital impact.",
+                image: "jayasree.png",
+                background: "bg5.jpg",
+
+                skills: [
+                    "Marketing",
+                    "SEO",
+                    "Brand Strategy",
+                    "Branding"
+                ],
+
+                social: {
+                    instagram: "#",
+                    linkedin: "#",
+                    github: "#"
+                }
+            }
+
+        ];
+
+        let current = 0;
+
+        function showMember(index) {
+
+            current = index;
+
+            const member = members[index];
+
+            document.getElementById("background").style.backgroundImage =
+                `url(${member.background})`;
+
+            document.getElementById("mainImage").src =
+                member.image;
+
+            document.getElementById("memberName").textContent =
+                member.name;
+
+            document.getElementById("memberRole").textContent =
+                member.role;
+
+            document.getElementById("memberAbout").textContent =
+                member.about;
+
+            document.getElementById("instagramLink").href =
+                member.social.instagram;
+
+            document.getElementById("linkedinLink").href =
+                member.social.linkedin;
+
+            document.getElementById("githubLink").href =
+                member.social.github;
+
+            document.getElementById("skills").innerHTML =
+                member.skills
+                    .map(skill => `<li>${skill}</li>`)
+                    .join("");
+
+            document
+                .querySelectorAll(".member-card")
+                .forEach(card => {
+
+                    card.classList.remove("active");
+
+                });
+
+            document
+                .querySelectorAll(".member-card")[index]
+                .classList.add("active");
+
+        }
+
+        document
+            .querySelectorAll(".member-card")
+            .forEach((card, index) => {
+
+                card.addEventListener("click", () => {
+
+                    showMember(index);
+
+                });
+
+            });
+
+        showMember(0);
+
+
+        /* =====================================================
+           MOBILE NAVIGATION
+        ===================================================== */
+        var sidenav = document.getElementById("sidenav")
+        var menuicon = document.getElementById("menuicon")
+        var closenav = document.getElementById("closenav")
+
+        menuicon.addEventListener("click", function () {
+            sidenav.style.right = "0%"
+        }
+
+        )
+
+        closenav.addEventListener("click", function () {
+            sidenav.style.right = "-70%"
+        })
+
+
+        /* =====================================================
+           NAVBAR SCROLL
+        ===================================================== */
+
+        window.addEventListener("scroll", () => {
+
+            const navbar =
+                document.getElementById("navbar");
+
+            if (window.scrollY > 50) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
+
+            }
+
+        });
+
+
+        /* =====================================================
+           PROJECT SLIDER
+        ===================================================== */
+
+        let currentSlide = 0;
+
+        const slides =
+            document.querySelectorAll(".work-slide");
+
+        const dots =
+            document.querySelectorAll(".dot");
+
+        function showSlide(index) {
+
+            slides.forEach(slide => {
+
+                slide.classList.remove("active");
+
+            });
+
+            dots.forEach(dot => {
+
+                dot.classList.remove("active");
+
+            });
+
+            slides[index].classList.add("active");
+
+            dots[index].classList.add("active");
+
+        }
+
+        function changeSlide(step) {
+
+            currentSlide += step;
+
+            if (currentSlide >= slides.length) {
+
+                currentSlide = 0;
+
+            }
+
+            if (currentSlide < 0) {
+
+                currentSlide = slides.length - 1;
+
+            }
+
+            showSlide(currentSlide);
+
+        }
+
+        function goToSlide(index) {
+
+            currentSlide = index;
+
+            showSlide(currentSlide);
+
+        }
+
+
+        /* =====================================================
+           STARTUP LOADER
+        ===================================================== */
+
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                document
+                    .getElementById("startupLoader")
+                    .classList.add("hide");
+
+            }, 2000);
+
+        });
+
+
+
+        /* =====================================================
+           CIRCLE TOUCH / CLICK POP EFFECT
+        ===================================================== */
+
+        const imageCircle =
+            document.querySelector(".image-box");
+
+        imageCircle.addEventListener("click", () => {
+
+            imageCircle.classList.toggle("circle-active");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
