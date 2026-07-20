@@ -569,6 +569,7 @@
             width: min(450px, 90%);
             aspect-ratio: 1;
             object-fit: cover;
+            object-position: top center;
             border-radius: 45% 55% 50% 50%;
             border: 1px solid rgba(255, 255, 255, .3);
             box-shadow:
@@ -661,6 +662,7 @@
             flex-shrink: 0;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center top;
             border: 2px solid var(--lime);
             transition: .5s ease;
         }
@@ -883,11 +885,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
+
             transition: .6s;
         }
 
         .work-image-box:hover img {
             transform: scale(1.06);
+
         }
 
         .work-btn {
@@ -1010,6 +1015,8 @@
 
             .member-card {
                 min-width: 220px;
+
+
             }
 
             .work-slide {
@@ -1054,6 +1061,7 @@
             }
 
             .member-card img {
+
                 width: 48px;
                 height: 48px;
             }
@@ -1765,6 +1773,7 @@
                 role: "Marketing & Growth",
                 about: "Focused on growth, brand visibility and creating meaningful digital impact.",
                 image: "./image/jayasri.jpg",
+                imageAlign: "center",
                 background: "bg5.jpg",
 
                 skills: [
